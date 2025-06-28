@@ -1,0 +1,58 @@
+import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
+import '../models/task.dart';
+
+class TaskProvider extends ChangeNotifier {
+  final Box<Task> _taskBox = Hive.box<Task>('tasks');
+
+  bool isDarkMode = false;
+
+  List<Task> get tasks => _taskBox.values.toList();
+
+  void addTask(Task task) {
+    _taskBox.add(task);
+    notifyListeners();
+  }
+
+  void updateTask(Task task) {
+    task.save();
+    notifyListeners();
+  }
+
+  void deleteTask(Task task) {
+    task.delete();
+    notifyListeners();
+  }
+
+  void toggleTaskStatus(Task task) {
+    task.isCompleted = !task.isCompleted;
+    task.save();
+    notifyListeners();
+  }
+
+  void toggleTheme() {
+    isDarkMode = !isDarkMode;
+    notifyListeners();
+  }
+
+  List<Task> filterTasks(String filter) {
+    switch (filter) {
+      case 'Active':
+        return tasks.where((t) => !t.isCompleted).toList();
+      case 'Completed':
+        return tasks.where((t) => t.isCompleted).toList();
+      default:
+        return tasks;
+    }
+  }
+
+  List<Task> sortTasks(String by) {
+    var sorted = [...tasks];
+    if (by == 'Due Date') {
+      sorted.sort((a, b) => a.dueDate?.compareTo(b.dueDate ?? DateTime.now()) ?? 0);
+    } else {
+      sorted.sort((a, b) => a.key.compareTo(b.key)); // default order
+    }
+    return sorted;
+  }
+}
