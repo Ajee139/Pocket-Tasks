@@ -36,7 +36,25 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       appBar: AppBar(
         title: const Text('Pocket Tasks'),
         centerTitle: true,
+        leading:         PopupMenuButton<String>(
+  icon: const Icon(Icons.sort),
+  onSelected: (value) {
+    Provider.of<TaskProvider>(context, listen: false).setSortOption(value);
+  },
+  itemBuilder: (context) => [
+    const PopupMenuItem(
+      value: 'Due Date',
+      child: Text('Sort by Due Date'),
+    ),
+    const PopupMenuItem(
+      value: 'Creation Date',
+      child: Text('Sort by Creation Date'),
+    ),
+  ],
+),
         actions: [
+  
+
           IconButton(
             icon: Icon(taskProvider.isDarkMode ? Icons.dark_mode : Icons.light_mode),
             onPressed: taskProvider.toggleTheme,

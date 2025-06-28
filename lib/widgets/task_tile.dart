@@ -48,10 +48,15 @@ class TaskTile extends StatelessWidget {
                 ),
               )
             : null,
-        trailing: Checkbox(
-          value: task.isCompleted,
-          onChanged: (_) => provider.toggleTaskStatus(task),
-        ),
+       trailing: AnimatedSwitcher(
+  duration: const Duration(milliseconds: 500),
+  child: Checkbox(
+    key: ValueKey(task.isCompleted),
+    value: task.isCompleted,
+    onChanged: (_) => provider.toggleTaskStatus(task),
+  ),
+),
+
       ),
     );
   }
