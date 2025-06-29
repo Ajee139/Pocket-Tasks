@@ -68,6 +68,7 @@ Colors and text styles are defined to match the chosen mode.
 
 ## Project Structure
 
+```txt
 /lib
   ├── models        // Task model with Hive annotations
   ├── providers     // TaskProvider for state logic
