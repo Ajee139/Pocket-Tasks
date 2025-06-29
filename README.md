@@ -81,9 +81,6 @@ Colors and text styles are defined to match the chosen mode.
   ├── task_tile_widget_test.dart
 ```
 
-
-
-
 ---
 
 ## Credits
