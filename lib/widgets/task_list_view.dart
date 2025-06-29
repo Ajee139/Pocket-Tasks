@@ -7,7 +7,7 @@ class TaskListView extends StatelessWidget {
   final String filter;
 
 
-  TaskListView({super.key, required this.filter});
+  const TaskListView({super.key, required this.filter});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ final tasks = taskProvider.sortTasks(filtered, taskProvider.sortOption);
       separatorBuilder: (_, __) => const SizedBox(height: 8),
       itemBuilder: (context, index) {
        return AnimatedSwitcher(
-  duration: const Duration(seconds: 2),
+  duration: const Duration(milliseconds: 200),
   transitionBuilder: (child, animation) => SlideTransition(
     position: Tween<Offset>(
       begin: const Offset(1, 0),

@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../models/task.dart';
 import '../providers/task_provider.dart';
 
-
 class TaskTile extends StatelessWidget {
   final Task task;
 
@@ -13,6 +12,7 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TaskProvider>(context, listen: false);
+    final textTheme = Theme.of(context).textTheme;
 
     return Dismissible(
       key: Key(task.key.toString()),
@@ -35,28 +35,24 @@ class TaskTile extends StatelessWidget {
         },
         title: Text(
           task.title,
-          style: TextStyle(
+          style: textTheme.bodyLarge?.copyWith(
             decoration: task.isCompleted ? TextDecoration.lineThrough : null,
-            color: task.isCompleted ? Colors.grey : Colors.black,
           ),
         ),
         subtitle: task.note != null && task.note!.isNotEmpty
             ? Text(
                 task.note!,
-                style: TextStyle(
-                  color: task.isCompleted ? Colors.grey : Colors.blueGrey,
-                ),
+                style: textTheme.bodyMedium,
               )
             : null,
-       trailing: AnimatedSwitcher(
-  duration: const Duration(milliseconds: 500),
-  child: Checkbox(
-    key: ValueKey(task.isCompleted),
-    value: task.isCompleted,
-    onChanged: (_) => provider.toggleTaskStatus(task),
-  ),
-),
-
+        trailing: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          child: Checkbox(
+            key: ValueKey(task.isCompleted),
+            value: task.isCompleted,
+            onChanged: (_) => provider.toggleTaskStatus(task),
+          ),
+        ),
       ),
     );
   }
