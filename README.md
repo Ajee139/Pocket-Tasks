@@ -17,6 +17,8 @@
 - Tested with unit and widget tests for reliability
 
 ---
+## Video Walkthrough
+https://drive.google.com/file/d/1fSuTIKdPbiYHaaQMmk7Bw3SbMPH97VcI/view?usp=sharing
 
 ## Tools & Libraries Used
 
