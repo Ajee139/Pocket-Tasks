@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pocket_tasks/screens/home_page.dart';
 import 'package:provider/provider.dart';
