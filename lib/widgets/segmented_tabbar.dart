@@ -24,12 +24,12 @@ class SegmentedTabBar extends StatelessWidget {
           height: 48,
           margin: const EdgeInsets.symmetric(horizontal: 0),
           decoration: BoxDecoration(
-            color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.3),
+            color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Stack(
             children: [
-              // Animated indicator
+             
               AnimatedBuilder(
   animation: controller.animation!,
   builder: (context, child) {
@@ -45,7 +45,7 @@ class SegmentedTabBar extends StatelessWidget {
   child: Container(
     margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
     decoration: BoxDecoration(
-      color: primaryColor.withOpacity(0.2),
+      color: primaryColor.withValues(alpha: 0.2),
       borderRadius: BorderRadius.circular(10),
     ),
   ),
@@ -60,7 +60,7 @@ class SegmentedTabBar extends StatelessWidget {
                   return Expanded(
                     child: InkWell(
                       borderRadius: BorderRadius.circular(12),
-                      splashColor: primaryColor.withOpacity(0.1),
+                      splashColor: primaryColor.withValues(alpha: 0.1),
                       onTap: () => controller.animateTo(index),
                       child: Center(
                         child: AnimatedDefaultTextStyle(
